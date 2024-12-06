@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Usuario</title>
+</head>
+<body>
+    <h1>Formulario de Usuario</h1>
+    <form id="usuarioForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <script>
+        document.getElementById('usuarioForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+
+            fetch('http://127.0.0.1:3000/guardar-usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                mode: 'cors', 
+                body: JSON.stringify({ nombre, apellido })
+            })
+            .then(response => response.json())
+            .then(data => alert('Usuario guardado correctamente'))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

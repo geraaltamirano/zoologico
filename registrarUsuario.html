@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="preload.js"></script>
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    </script>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="menuusuario" >
+            <a  href="actualizarUsuario.html">Usuarios</a>
+        </div>
+        <a href="registrarEspecie.html">Especies</a>
+        <a href="login.html">Salir</a>
+      </div>
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+    <div class="encabezado">
+        <h1> Zootopia</h1>
+    </div>
+  
+    <div class="container">
+        <h2>Registrar usuario </h2>
+        <form id="registroForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="apellidop">Apellido Paterno:</label>
+            <input type="text" id="apellidop" name="apellidop" required><br><br>
+
+            <label for="apellidom">Apellido Materno:</label>
+            <input type="text" id="apellidom" name="apellidom" required><br><br>
+
+            <label for="usuario">Usuario: *</label>
+            <input type="text" id="usuario" name="usuario" required><br><br>
+
+
+            <label for="clave">Clave:</label>
+            <input type="text" id="clave" name="clave" required><br><br>
+
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" required><br><br>
+
+            <label for="rol">Rol:</label>
+            <select name="rol" id="rol">
+                <option value="Administrador">Administrador</option>
+                <option value="Usuario" selected>Usuario</option>
+              </select>
+              <br><br>
+
+            <button type="submit">Registrar</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+
+    <script src="registrarUsuario.js"></script>
+
+   
+</body>
+</html>
