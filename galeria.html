@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu del zoologico</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+  <header>
+
+        
+    </header>
+        <!-- Aquí se cargará el menú -->
+        <div id="menu"></div>
+    <main>
+        <section class="seccion-1">
+            <div class="texto">
+                <span>Tigre de bengala</span>
+                <div>
+                    <span class="fechas-anteriores"></span>
+                    <span class="fechas-nuevas"></span>
+                </div>
+            </div>
+            <div>
+                 <img src="tigre.jpg"alt="">
+            </div>         
+        </section>
+    </main>
+
+</body>
+</html>
+
+<script>
+    // Usar JavaScript para cargar el archivo del menú
+    fetch('menucorto.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu').innerHTML = data;
+        });
+  </script>

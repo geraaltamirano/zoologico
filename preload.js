@@ -1,4 +1,4 @@
-window.onload = function(){
+$(document).ready(function() {
     const token= localStorage.getItem("token");
     console.log(window.location.href);
     console.log(token);
@@ -16,4 +16,4 @@ window.onload = function(){
         console.log("Undefined");
         window.location.href = "login.html";
     }
-  };
+});

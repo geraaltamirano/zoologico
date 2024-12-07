@@ -5,30 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Registro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleg.css"> <!-- MENU -->
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="preload.js"></script>
-<script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-    </script>
 <body>
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div id="menuusuario" >
-            <a  href="actualizarUsuario.html">Usuarios</a>
+
+    <!-- Aquí se cargará el menú -->
+    
+    <header>
+        <div class="contenedor">
+            <div class="logo">
+                <ion-icon name="logo-gitlab"></ion-icon>
+                <span>Zoologico</span> 
         </div>
-        <a href="registrarEspecie.html">Especies</a>
-        <a href="login.html">Salir</a>
-      </div>
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+        <div class="menu-opciones">
+            <ul>
+                <li>
+                    <a id="home"href="galeria.html">Home</a>
+                </li>
+                <li>
+                    <a href="registrarEspecie.html">Especies</A>
+                </li>
+                <li>
+                    
+                         <a id="menuusuario" href="actualizarUsuario.html">Usuarios</a>
+                </li>
+            </ul>
+            </div>
+            <div class="controles-usuario">
+                <ion-icon name="search"></ion-icon>
+                <ion-icon name="basket"></ion-icon>
+                <input id="btn-sign-up" type="button" onclick="location.href='login.html';" value="LOG IN" />
+                <ion-icon id="btn-menu" name="menu"></ion-icon>
+            </div>
+        </div>
+        
+    </header>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="scriptg.js"></script>
+
+    <!-- FIN Aquí se cargará el menú -->
+
 
     <div class="encabezado">
-        <h1> Zootopia</h1>
+        <h1> Administración de usuarios</h1>
         <div class="containerdos">
             <button class="buttondos" onclick="location.href='registrarUsuario.html'">
                 <img src="https://cdn-icons-png.flaticon.com/512/5070/5070296.png" width="25px">
@@ -101,5 +124,7 @@
 
         }
       </script>
+
+    
 </body>
 </html>
