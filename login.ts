@@ -32,7 +32,7 @@ loginForm.addEventListener("submit", async (e) => {
 
   //fin cifrar
 
-  const response =  await fetch(`http://localhost:3000/auth/login/${username}/${password}`); 
+  const response =  await fetch(`http://3.133.141.100:3000/auth/login/${username}/${passworddesc}`); 
 
   if (response.ok) {
     const data = await response.json();

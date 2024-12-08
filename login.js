@@ -63,7 +63,7 @@ loginForm.addEventListener("submit", function (e) { return __awaiter(_this, void
                         password += char;
                     }
                 }
-                return [4 /*yield*/, fetch("http://localhost:3000/auth/login/".concat(username, "/").concat(password))];
+                return [4 /*yield*/, fetch("http://3.133.141.100:3000/auth/login/".concat(username, "/").concat(passworddesc))];
             case 1:
                 response = _a.sent();
                 if (!response.ok) return [3 /*break*/, 3];

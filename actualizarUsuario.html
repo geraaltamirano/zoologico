@@ -6,6 +6,8 @@
     <title>Formulario de Registro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleg.css"> <!-- MENU -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="preload.js"></script>
@@ -26,7 +28,7 @@
                     <a id="home"href="galeria.html">Home</a>
                 </li>
                 <li>
-                    <a href="registrarEspecie.html">Especies</A>
+                    <a href="actualizarEspecie.html">Especies</A>
                 </li>
                 <li>
                     
@@ -46,6 +48,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="scriptg.js"></script>
+    
 
     <!-- FIN Aquí se cargará el menú -->
 
@@ -76,6 +79,10 @@
     <div class="container">
         <h2> </h2>
         <form id="registroForm">
+
+            <label for="nombre">ID:</label>
+            <input readonly type="text" id="id" name="id" required><br><br>
+
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -88,10 +95,10 @@
             <label for="usuario">usuario:</label>
             <input type="text" id="usuario" name="usuario" required><br><br>
 
-
+            <i class="fa fa-eye" id="togglePassword"></i>
             <label for="clave">Clave:</label>
-            <input type="text" id="clave" name="clave" required><br><br>
-
+            <input type="password" id="clave" name="clave" required><br><br>
+            
             <label for="cargo">Cargo:</label>
             <input type="text" id="cargo" name="cargo" required><br><br>
 
@@ -103,16 +110,21 @@
         <div id="mensaje"></div>
     </div>
 
-    <script src="registrarUsuario.js"></script>
+    <script src="actualizarUsuario.js"></script>
 
    
     <script>
        
         async function consultarUsuario() {
           const id = document.getElementById('usuario-id').value;
-          const response = await fetch(`http://localhost:3000/usuarios/${id}`);
+          const response = await fetch(`http://3.133.141.100:3000/usuarios/${id}`);
           const data = await response.json();
           var json = JSON.parse(JSON.stringify(data, null, 2));
+          const desplazamiento = -5;
+          console.log(json['clave']);
+          const clave = cifrarTextoCesar(json['clave'], desplazamiento);
+          console.log(clave);
+          document.getElementById('id').value = json['id'];
           document.getElementById('nombre').value = json['nombre'];
           document.getElementById('apellidop').value = json['apellidop'];
           document.getElementById('apellidom').value = json['apellidom'];
@@ -123,6 +135,23 @@
           document.getElementById('rol').value = json['rol'];
 
         }
+
+        const icon = document.getElementById('togglePassword');
+        let password = document.getElementById('clave');
+
+        /* Event fired when <i> is clicked */
+        icon.addEventListener('click', function() {
+        if(password.type === "password") {
+            password.type = "text";
+            icon.classList.add("fa-eye-slash");
+            icon.classList.remove("fa-eye");
+        }
+        else {
+            password.type = "password";
+            icon.classList.add("fa-eye");
+            icon.classList.remove("fa-eye-slash");
+        }
+        });
       </script>
 
     

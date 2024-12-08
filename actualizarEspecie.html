@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleg.css"> <!-- MENU -->
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="preload.js"></script>
+<body>
+
+    <!-- Aquí se cargará el menú -->
+    
+    <header>
+        <div class="contenedor">
+            <div class="logo">
+                <ion-icon name="logo-gitlab"></ion-icon>
+                <span>Zoologico</span> 
+        </div>
+
+        <div class="menu-opciones">
+            <ul>
+                <li>
+                    <a id="home"href="galeria.html">Home</a>
+                </li>
+                <li>
+                    <a href="actualizarEspecie.html">Especies</A>
+                </li>
+                <li>
+                    
+                         <a id="menuusuario" href="actualizarUsuario.html">Usuarios</a>
+                </li>
+            </ul>
+            </div>
+            <div class="controles-usuario">
+                <ion-icon name="search"></ion-icon>
+                <ion-icon name="basket"></ion-icon>
+                <input id="btn-sign-up" type="button" onclick="location.href='login.html';" value="LOG IN" />
+                <ion-icon id="btn-menu" name="menu"></ion-icon>
+            </div>
+        </div>
+        
+    </header>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="scriptg.js"></script>
+
+    <!-- FIN Aquí se cargará el menú -->
+
+
+    <div class="encabezado">
+        <h1> Administración de especies</h1>
+        <div class="containerdos">
+            <button class="buttondos" onclick="location.href='registrarEspecie.html'">
+                <img src="https://cdn-icons-png.flaticon.com/512/5070/5070296.png" width="25px">
+            </button>
+        </div>
+        
+    </div>
+    
+    <div class="container">
+        
+            <h2>Especies</h2>
+            
+        
+   
+    
+        <input type="text" id="especie-id" placeholder="especie">
+        <button onclick="consultarEspecie()">Consultar</button>
+        <pre id="resultado"></pre>
+    
+    </div>
+  
+    <div class="container">
+        <h2>Registrar Especie</h2>
+        <form id="registroForm">
+
+            <label for="nombre">ID:</label>
+            <input readonly type="text" id="id" name="id" required><br><br>
+            <label for="nombre">Nombre Cientifico:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="reino">Reino:</label>
+            <input type="text" id="reino" name="reino" required><br><br>
+
+            <label for="filo">Filo:</label>
+            <input type="text" id="filo" name="filo" required><br><br>
+            
+            <label for="clase">Clase:</label>
+            <input type="text" id="clase" name="clase" required><br><br>
+
+            <label for="orden">Orden:</label>
+            <input type="text" id="orden" name="orden" required><br><br>
+
+
+            <label for="familia">Familia:</label>
+            <input type="text" id="familia" name="familia" required><br><br>
+
+            <label for="genero">Genero:</label>
+            <input type="text" id="genero" name="genero" required><br><br>
+
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" id="descripcion" name="descripcion" required><br><br>
+
+            <label for="ecosistema">Ecosistema:</label>
+            <input type="text" id="ecosistema" name="ecosistema" required><br><br>
+
+            <button onclick="actualizarEspecie()">Actualizar</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+
+    <script src="actualizarEspecie.js"></script>
+
+   
+    <script>
+       
+        async function consultarEspecie() {
+          const id = document.getElementById('especie-id').value;
+          const response = await fetch(`http://3.133.141.100:3000/especies/${id}`);
+          const data = await response.json();
+          var json = JSON.parse(JSON.stringify(data, null, 2));
+          document.getElementById('id').value = json['id'];
+          document.getElementById('nombre').value = json['nombre'];
+          document.getElementById('reino').value = json['reino'];
+          document.getElementById('filo').value = json['filo'];
+          document.getElementById('clase').value = json['clase'];
+          document.getElementById('orden').value = json['orden'];
+          document.getElementById('familia').value = json['familia'];
+          document.getElementById('genero').value = json['genero'];
+          document.getElementById('descripcion').value = json['descripcion'];
+          document.getElementById('ecosistema').value = json['ecosistema'];
+
+        }
+
+       
+  </script>
+
+    
+</body>
+</html>

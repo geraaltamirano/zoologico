@@ -16,8 +16,11 @@ interface Especie {
 }
 
 // Función para manejar el envío del formulario
-function manejarEnvioFormulario(event: Event): void {
+async function manejarEnvioFormulario(event: Event): Promise<void> {
     event.preventDefault(); // Prevenir el envío por defecto del formulario
+
+   
+
 
     const nombreInput = document.getElementById('nombre') as HTMLInputElement;
     const reinoInput = document.getElementById('reino') as HTMLInputElement;
@@ -66,24 +69,66 @@ function manejarEnvioFormulario(event: Event): void {
 
         // Crear el objeto de usuario con los datos del formulario
         
-    
-        fetch('http://127.0.0.1:3000/guardar-especie', {
+    try{
+        const response = await  fetch('http://127.0.0.1:3000/guardar-especie', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             mode: 'cors', 
             body: JSON.stringify({ nombre, reino,filo, clase, orden, familia,genero,descripcion,ecosistema })
+        });
+        if (!response.ok) {
+            mostrarMensaje(`¡Error, hubo un problema al registrar la especie, por favor contacte al equipo de soporte`, 'error');
+        }
+        const data = await response.json();
+          var json = JSON.parse(JSON.stringify(data, null, 2));
+
+        const subirImagen = document.getElementById('subirImagen') as HTMLDivElement;
+        subirImagen.style.display = 'block';
+        const idEspecie = document.getElementById('idEspecie') as HTMLInputElement;
+        idEspecie.value=json['id'];
+        mostrarMensaje(`¡Registro exitoso! Nombre: ${nombre}  ${reino}  ${filo}  ${orden}`, 'exito') ;
+
+       
+    }catch(error){ 
+        mostrarMensaje(`¡Error, hubo un problema al registrar la especie, por favor contacte al equipo de soporte`, 'error');
+    }
+
+
+
+}
+// Función para mostrar un mensaje al usuario--no se ocupa
+function guardarImagen(event: Event): void  {
+    event.preventDefault();
+    const fileInput = document.getElementById('imagen') as HTMLInputElement;;
+    if (fileInput.files && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        const idInput = document.getElementById('idEspecie') as HTMLInputElement;
+        const id = idInput.value.trim();
+        formData.append('image', file);
+        formData.append('idEspecie', id);
+        fetch('http://3.133.141.100:3000/upload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            mode: 'cors', 
+            body: formData
         })
         .then(response => response.json())
-        .then(data => mostrarMensaje(`¡Registro exitoso! Nombre: ${nombre}  ${reino}  ${filo}  ${orden}`, 'exito')) // Mostrar los datos de especie en el mensaje
         .catch(error => mostrarMensaje(`¡Error, hubo un problema al registrar la especie, por favor contacte al equipo de soporte`, 'error'));
+    }
 }
+
 
 // Función para mostrar un mensaje al usuario
 function mostrarMensaje(mensaje: string, tipo: 'exito' | 'error'): void {
+
     const mensajeDiv = document.getElementById('mensaje') as HTMLDivElement;
     mensajeDiv.textContent = mensaje;
+    
 
     // Establecer el estilo según el tipo de mensaje
     if (tipo === 'exito') {

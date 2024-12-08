@@ -39,10 +39,10 @@ function manejarEnvioFormulario(event) {
             'Content-Type': 'application/json'
         },
         mode: 'cors',
-        body: JSON.stringify({ nombre: nombre, apellidop: apellidop, apellidom: apellidom, clave: clave, cargo: cargo, usuariof: usuariof, rol: rol })
+        body: JSON.stringify({ nombre: nombre, apellidop: apellidop, apellidom: apellidom, clavedesc: clavedesc, cargo: cargo, usuariof: usuariof, rol: rol })
     })
         .then(function (response) { return response.json(); })
-        .then(function (data) { return mostrarMensaje("\u00A1Registro exitoso! Nombre: ".concat(nombre, "  ").concat(apellidop, "  ").concat(apellidom, " con la clave:  ").concat(clave), 'exito'); }) // Mostrar los datos del usuario en el mensaje
+        .then(function (data) { return mostrarMensaje("\u00A1Registro exitoso!", 'exito'); }) // Mostrar los datos del usuario en el mensaje
         .catch(function (error) { return mostrarMensaje("\u00A1Error, hubo un problema al registrar el usuario, por favor contacte al equipo de soporte", 'error'); });
 }
 // Función para mostrar un mensaje al usuario

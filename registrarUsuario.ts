@@ -55,10 +55,10 @@ function manejarEnvioFormulario(event: Event): void {
             'Content-Type': 'application/json'
         },
         mode: 'cors', 
-        body: JSON.stringify({ nombre, apellidop,apellidom, clave, cargo, usuariof,rol })
+        body: JSON.stringify({ nombre, apellidop,apellidom, clavedesc, cargo, usuariof,rol })
     })
     .then(response => response.json())
-    .then(data => mostrarMensaje(`¡Registro exitoso! Nombre: ${nombre}  ${apellidop}  ${apellidom} con la clave:  ${clave}`, 'exito')) // Mostrar los datos del usuario en el mensaje
+    .then(data => mostrarMensaje(`¡Registro exitoso!`, 'exito')) // Mostrar los datos del usuario en el mensaje
     .catch(error => mostrarMensaje(`¡Error, hubo un problema al registrar el usuario, por favor contacte al equipo de soporte`, 'error'));
 
    

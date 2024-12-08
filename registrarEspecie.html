@@ -24,7 +24,7 @@
                     <a id="home"href="galeria.html">Home</a>
                 </li>
                 <li>
-                    <a href="registrarEspecie.html">Especies</A>
+                    <a href="actualizarEspecie.html">Especies</A>
                 </li>
                 <li>
                     
@@ -80,10 +80,18 @@
             <label for="ecosistema">Ecosistema:</label>
             <input type="text" id="ecosistema" name="ecosistema" required><br><br>
 
-
             <button type="submit">Registrar</button>
         </form>
         <div id="mensaje"></div>
+        <div id="subirImagen" style="display: none;">
+            <h1>Subir una Imagen</h1>
+            <form action="http://3.133.141.100:3000/upload" method="POST" enctype="multipart/form-data" id="registroImage">
+                <input type="file" name="image" required>
+                <input type="hidden" name="idEspecie" id="idEspecie" >
+                <button type="submit">Subir Imagen</button>
+            </form>
+        </div>
+
     </div>
 
     <script src="registrarEspecie.js"></script>
